@@ -13,7 +13,8 @@ pipeline {
       steps {
         container('maven') {
           dir('env') {
-            sh 'jx step helm build'
+            sh 'sleep 300'
+            sh 'HTTPS_PROXY=http://arxan:arxan@qy.arxan.proxy.wl166.com:21 helm repo add storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io ;jx step helm build'
           }
         }
       }
@@ -25,7 +26,7 @@ pipeline {
       steps {
         container('maven') {
           dir('env') {
-            sh 'jx step helm apply'
+            sh 'http://arxan:arxan@qy.arxan.proxy.wl166.com:21 helm repo add storage.googleapis.com https://storage.googleapis.com/chartmuseum.jenkins-x.io ;jx step helm apply'
           }
         }
       }
